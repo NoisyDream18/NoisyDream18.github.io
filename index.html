@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jack West — electrical engineering student, builder, musician." />
+  <meta name="author" content="Jack West" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Jack West" />
+  <meta property="og:description" content="Electrical engineering student, builder, musician." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://NoisyDream18.github.io/" />
+  <meta property="og:image" content="https://NoisyDream18.github.io/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jack West" />
+  <meta name="twitter:description" content="Electrical engineering student, builder, musician." />
+  <meta name="twitter:image" content="https://NoisyDream18.github.io/images/og-image.png" />
+
+  <title>Jack West</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+
+  <div class="noise" aria-hidden="true"></div>
+  <canvas id="grid-canvas" aria-hidden="true"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="Jack West home">
+        <span class="logo-slash">/</span>jw
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">about</a>
+        <a href="#projects">projects</a>
+        <a href="#contact">contact</a>
+      </nav>
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span>available</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── HERO ─────────────────────────────── -->
+    <section class="hero" id="about">
+      <div class="hero-content">
+
+        <div class="hero-eyebrow">
+          <span class="eyebrow-line"></span>
+          <span>NoisyDream18</span>
+        </div>
+
+        <h1 class="hero-name">
+          <span class="name-first">Jack</span>
+          <span class="name-last">West</span>
+        </h1>
+
+        <p class="hero-role">
+          Electrical Engineering · Truckee, CA
+        </p>
+
+        <p class="hero-bio">
+          High school student building at the intersection of hardware and software.
+          Homelab tinkerer, FTC robotics team president, jazz saxophone.
+          Headed toward EE — UCI, UCLA, UCSB, Cal Poly SLO.
+        </p>
+
+        <div class="hero-tags">
+          <span>embedded systems</span>
+          <span>linux</span>
+          <span>robotics</span>
+          <span>jazz</span>
+          <span>3d printing</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">view work</a>
+          <a href="https://github.com/NoisyDream18" target="_blank" rel="noopener" class="btn-ghost">
+            github
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+              <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="hero-terminal">
+        <div class="terminal-chrome">
+          <div class="tc-dots">
+            <span class="tc-dot tc-red"></span>
+            <span class="tc-dot tc-yellow"></span>
+            <span class="tc-dot tc-green"></span>
+          </div>
+          <span class="tc-title">~/jack-west</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line"><span class="t-prompt">❯</span> <span class="t-cmd" data-type="cat about.txt">cat about.txt</span></div>
+          <div class="t-output t-delay-1">
+            <span class="t-key">name</span><span class="t-sep">:</span> Jack West<br>
+            <span class="t-key">school</span><span class="t-sep">:</span> Tahoe-Truckee HS, grade 10<br>
+            <span class="t-key">goal</span><span class="t-sep">:</span> EE @ UC system<br>
+            <span class="t-key">languages</span><span class="t-sep">:</span> Python, C, bash
+          </div>
+          <div class="t-line t-delay-2"><span class="t-prompt">❯</span> <span class="t-cmd" data-type="ls homelab/">ls homelab/</span></div>
+          <div class="t-output t-delay-3">
+            mercury/ &nbsp;<span class="t-muted"># Raspberry Pi 5</span><br>
+            saturn/ &nbsp;&nbsp;<span class="t-muted"># Dell OptiPlex 7060</span><br>
+            pihole/ &nbsp;&nbsp;<span class="t-muted"># DNS ad-blocking</span><br>
+            site/ &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-muted"># this page, self-hosted</span>
+          </div>
+          <div class="t-line t-delay-4"><span class="t-prompt">❯</span> <span class="cursor-blink">▌</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── PROJECTS ──────────────────────────── -->
+    <section class="section" id="projects">
+      <header class="section-header">
+        <div class="section-label">
+          <span class="sl-num">01</span>
+          <span class="sl-line"></span>
+          projects
+        </div>
+      </header>
+
+      <div class="project-grid">
+
+        <article class="project-card project-card--featured">
+          <div class="pc-top">
+            <span class="pc-type">homelab</span>
+            <span class="pc-year">2024–25</span>
+          </div>
+          <h3 class="pc-title">Self-Hosted Infrastructure</h3>
+          <p class="pc-desc">
+            Full homelab stack on a Raspberry Pi 5 and Dell OptiPlex. Running PaperMC,
+            Pi-hole, Nginx reverse proxy, Cloudflare Tunnel, and Tailscale VPN.
+            Documented setup and hardening from scratch.
+          </p>
+          <ul class="pc-stack">
+            <li>Ubuntu Server</li><li>Docker</li><li>Nginx</li><li>Cloudflare</li><li>Tailscale</li>
+          </ul>
+          <div class="pc-links">
+            <a href="https://github.com/NoisyDream18" class="pcl" target="_blank" rel="noopener">github →</a>
+            <a href="https://jack-west.com" class="pcl" target="_blank" rel="noopener">site →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="pc-top">
+            <span class="pc-type">robotics</span>
+            <span class="pc-year">2024–25</span>
+          </div>
+          <h3 class="pc-title">FTC Robotics Team</h3>
+          <p class="pc-desc">
+            President of a FIRST Tech Challenge team. Responsible for overall strategy,
+            programming, and mechanical design for competition.
+          </p>
+          <ul class="pc-stack">
+            <li>Java</li><li>FTC SDK</li><li>CAD</li>
+          </ul>
+          <div class="pc-links">
+            <a href="https://github.com/NoisyDream18" class="pcl" target="_blank" rel="noopener">github →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="pc-top">
+            <span class="pc-type">hardware</span>
+            <span class="pc-year">2025</span>
+          </div>
+          <h3 class="pc-title">CPU From Scratch</h3>
+          <p class="pc-desc">
+            Building an 8-bit CPU on a breadboard following Ben Eater's series.
+            Documenting each stage on GitHub as a portfolio project.
+          </p>
+          <ul class="pc-stack">
+            <li>Logic ICs</li><li>Assembly</li><li>Breadboard</li>
+          </ul>
+          <div class="pc-links">
+            <a href="https://github.com/NoisyDream18" class="pcl" target="_blank" rel="noopener">github →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="pc-top">
+            <span class="pc-type">software</span>
+            <span class="pc-year">2024</span>
+          </div>
+          <h3 class="pc-title">This Site</h3>
+          <p class="pc-desc">
+            Portfolio page self-hosted on a Raspberry Pi via Cloudflare Tunnel and Nginx.
+            Zero frameworks, zero dependencies — plain HTML, CSS, and JS.
+          </p>
+          <ul class="pc-stack">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Nginx</li>
+          </ul>
+          <div class="pc-links">
+            <a href="https://github.com/NoisyDream18/NoisyDream18.github.io" class="pcl" target="_blank" rel="noopener">github →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── CONTACT ───────────────────────────── -->
+    <section class="section" id="contact">
+      <header class="section-header">
+        <div class="section-label">
+          <span class="sl-num">02</span>
+          <span class="sl-line"></span>
+          contact
+        </div>
+      </header>
+
+      <div class="contact-layout">
+        <div class="contact-left">
+          <p class="contact-heading">let's talk</p>
+          <p class="contact-body">
+            I'm open to internships, project collabs, or just connecting with other builders.
+          </p>
+        </div>
+        <div class="contact-right">
+          <a href="mailto:you@example.com" class="contact-email">
+            you@example.com
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 14L14 2M14 2H6M14 2V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <div class="contact-socials">
+            <a href="https://github.com/NoisyDream18" target="_blank" rel="noopener">
+              <span>github</span>
+              <span class="cs-handle">@NoisyDream18</span>
+            </a>
+            <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">
+              <span>linkedin</span>
+              <span class="cs-handle">add handle</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2025 Jack West</span>
+    <span class="footer-mid">built with html · deployed via github pages</span>
+    <a href="https://github.com/NoisyDream18/NoisyDream18.github.io" target="_blank" rel="noopener" class="footer-src">source</a>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
