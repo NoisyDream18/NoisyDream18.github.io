@@ -43,6 +43,15 @@ document.querySelectorAll('a[href^="http"]').forEach(a => {
   a.setAttribute('rel', 'noopener noreferrer');
 });
 
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // ── Load team cards from JSON ─────────────────
 (function () {
   const grid = document.querySelector('.team-grid');
@@ -97,4 +106,134 @@ document.querySelectorAll('a[href^="http"]').forEach(a => {
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
   }
+})();
+
+// ── Load gallery from JSON ─────────────────
+(function () {
+  const track = document.querySelector('.gallery-track');
+  if (!track) return;
+
+  fetch('assets/data/gallery.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Gallery JSON not found');
+      return response.json();
+    })
+    .then(items => {
+      if (!Array.isArray(items) || !items.length) throw new Error('Invalid gallery data');
+
+      const cards = items.map(item => {
+        const image = item.src && item.src.trim();
+        const alt = item.alt || item.title || 'Gallery image';
+        const src = item.src || '';
+
+        return `
+          <div class="gallery-item" data-src="${escapeHTML(src)}" data-alt="${escapeHTML(alt)}">
+            ${image ? `<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" />` : `<span>${escapeHTML(item.title || 'Photo coming soon')}</span>`}
+          </div>
+        `;
+      }).join('');
+
+      track.innerHTML = cards + cards;
+      attachGalleryModal();
+    })
+    .catch(() => {
+      // keep the existing static markup if loading fails
+    });
+  function attachGalleryModal() {
+    const modal = document.querySelector('.gallery-modal');
+    const modalImage = document.querySelector('.gallery-modal-image');
+    const modalTitle = document.querySelector('.gallery-modal-title');
+    const modalDescription = document.querySelector('.gallery-modal-description');
+    const closeButton = document.querySelector('.gallery-modal-close');
+    const backdrop = document.querySelector('.gallery-modal-backdrop');
+
+    if (!modal || !modalImage || !closeButton || !backdrop) return;
+
+    function openModal(item) {
+      const src = item.getAttribute('data-src');
+      const alt = item.getAttribute('data-alt');
+
+      modalImage.innerHTML = src ? `<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" />` : '';
+      modal.classList.remove('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.setAttribute('aria-hidden', 'true');
+      modalImage.innerHTML = '';
+    }
+
+    const track = document.querySelector('.gallery-track');
+    if (track) {
+      track.addEventListener('click', (event) => {
+        const item = event.target.closest('.gallery-item');
+        if (!item) return;
+        openModal(item);
+      });
+    }
+
+    closeButton.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  }
+})();
+
+// ── Load sponsors from JSON ─────────────────
+(function () {
+  const grid = document.querySelector('.sponsor-grid');
+  if (!grid) return;
+
+  fetch('assets/data/sponsors.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Sponsors JSON not found');
+      return response.json();
+    })
+    .then(items => {
+      if (!Array.isArray(items)) throw new Error('Invalid sponsors data');
+      const sponsorHtml = items.map(item => {
+        const logo = item.logo ? `<div class="sponsor-item-logo"><img src="${escapeHTML(item.logo)}" alt="${escapeHTML(item.name || 'Sponsor')} logo" /></div>` : '';
+        const copy = `
+          <div class="sponsor-item-copy">
+            <span class="sponsor-name">${escapeHTML(item.name || 'Sponsor')}</span>
+            <span class="sponsor-description">${escapeHTML(item.description || '')}</span>
+          </div>
+        `;
+        const hasLink = item.website && item.website.trim();
+        const tag = hasLink ? 'a' : 'div';
+        const hrefAttr = hasLink ? ` href="${escapeHTML(item.website)}" target="_blank" rel="noopener noreferrer"` : '';
+
+        return `
+          <${tag} class="sponsor-item"${hrefAttr}>
+            ${logo}
+            ${copy}
+          </${tag}>
+        `;
+      }).join('');
+
+      grid.innerHTML = sponsorHtml;
+    })
+    .catch(() => {
+      // keep the existing static markup if loading fails
+    });
+})();
+// ── Contact form demo error handler ─────────────────
+(function () {
+  const contactForm = document.querySelector('.contact-form');
+  if (!contactForm) return;
+
+  const contactFormErrorText = 'Error: No FormSpree endpoint configured.';
+  const errorEl = contactForm.querySelector('.form-error');
+
+  contactForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (errorEl) {
+      errorEl.textContent = contactFormErrorText;
+      errorEl.classList.remove('hidden');
+    }
+  });
 })();

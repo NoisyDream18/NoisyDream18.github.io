@@ -1,0 +1,44 @@
+[
+  {
+    "id": "build-session",
+    "title": "Build Session",
+    "description": "Team members assembling the robot drivetrain.",
+    "src": "images/logo.svg",
+    "alt": "Students working on the robot"
+  },
+  {
+    "id": "match-practice",
+    "title": "Match Practice",
+    "description": "A practice run on the field before competition.",
+    "src": "images/logo.svg",
+    "alt": "Robot on the practice field"
+  },
+  {
+    "id": "pit-area",
+    "title": "Pit Area",
+    "description": "Equipment and strategy planning in the pit.",
+    "src": "images/logo.svg",
+    "alt": "Team pit area setup"
+  },
+  {
+    "id": "strategy-meeting",
+    "title": "Strategy Meeting",
+    "description": "Planning the next match approach.",
+    "src": "images/logo.svg",
+    "alt": "Team discussing strategy"
+  },
+  {
+    "id": "award-celebration",
+    "title": "Award Celebration",
+    "description": "Celebratory moment after a strong run.",
+    "src": "images/logo.svg",
+    "alt": "Team celebrating"
+  },
+  {
+    "id": "community-event",
+    "title": "Community Event",
+    "description": "Working with local sponsors and families.",
+    "src": "images/logo.svg",
+    "alt": "Team at a community event"
+  }
+]
