@@ -1,4 +1,4 @@
-/* main.js — NoisyDream18.github.io
+/* main.js — Truckee Snowbotics
    Zero dependencies. Vanilla ES6+. */
 
 'use strict';
@@ -142,8 +142,8 @@ document.querySelectorAll('a[href^="http"]').forEach(a => {
 
 // ── Console signature ─────────────────────────
 const S = [
-  ['%c /jw ', 'background:#00c8ff;color:#080b0f;font-family:monospace;font-weight:bold;font-size:13px;padding:2px 4px;border-radius:3px'],
-  ['%c NoisyDream18.github.io ', 'color:#3d5468;font-family:monospace;font-size:11px;'],
+  ['%c //snowbotics ', 'background:#00c8ff;color:#080b0f;font-family:monospace;font-weight:bold;font-size:13px;padding:2px 4px;border-radius:3px'],
+  ['%c Truckee Snowbotics · FTC ', 'color:#3d5468;font-family:monospace;font-size:11px;'],
   ['%c built with vanilla html/css/js ', 'color:#3d5468;font-family:monospace;font-size:11px;'],
 ];
 S.forEach(([msg, style]) => console.log(msg, style));
