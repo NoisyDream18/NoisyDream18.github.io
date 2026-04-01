@@ -1,0 +1,32 @@
+[
+  {
+    "id": "join-form",
+    "label": "Join the Team",
+    "url": "https://forms.gle/21LAVqmfFErDXKMv6",
+    "category": "Join"
+  },
+  {
+    "id": "ftc-manual",
+    "label": "FTC Game Manual",
+    "url": "https://ftc-docs.firstinspires.org/",
+    "category": "Resources"
+  },
+  {
+    "id": "team-github",
+    "label": "Team GitHub",
+    "url": "https://github.com/NoisyDream18/FTC-Truckee-Robotics",
+    "category": "Resources"
+  },
+  {
+    "id": "sponsorship-form",
+    "label": "Sponsorship Form and Details",
+    "url": "#",
+    "category": "Sponsors"
+  },
+  {
+    "id": "2026_contract",
+    "label": "2026 Contract",
+    "url": "/assets/files/2026_contract.pdf",
+    "category": "Resources"
+  }
+]

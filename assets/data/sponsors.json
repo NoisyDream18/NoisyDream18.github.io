@@ -2,9 +2,7 @@
   {
     "id": "west-orthodontics",
     "name": "West Orthodontics",
-    "description": "Providing orthodontic care and generous support to Snowbotics.",
-    "website": "https://www.drwestortho.com/",
-    "logo": "images/logo.svg",
-    "level": "Platinum"
+    "banner": "/images/sponsors/west_ortho_logo.png",
+    "website": "https://www.drwestortho.com/"
   }
 ]

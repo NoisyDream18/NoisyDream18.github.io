@@ -1,14 +1,22 @@
 [
   {
-    "src": "images/early_robotv1.webp",
+    "src": "/images/25_26_robot.webp",
+    "description": "2025-2026 FTC final robot."
+  },
+  {
+    "src": "/images/team1.webp",
+    "description": "Our team in 2026."
+  },
+  {
+    "src": "/images/early_robotv1.webp",
     "description": "Early prototype robot."
   },
   {
-    "src": "images/early_match.webp",
+    "src": "/images/early_match.webp",
     "description": "Competition match in early 2026."
   },
   {
-    "src": "images/development.webp",
+    "src": "/images/development.webp",
     "description": "Developing the robot."
   }
 ]

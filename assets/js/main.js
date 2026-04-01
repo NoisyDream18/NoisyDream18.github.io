@@ -1,18 +1,27 @@
 /* main.js — Truckee Snowbotics */
 'use strict';
 
+// ╔══════════════════════════════════════════════════╗
+// ║  LINKS — edit these when URLs change             ║
+// ╠══════════════════════════════════════════════════╣
+// ║  Any element with data-link-key="keyName" will   ║
+// ║  automatically get its href set to the value     ║
+// ║  below. Forms use data-form-action="formAction". ║
+// ╚══════════════════════════════════════════════════╝
 const LINK_TARGETS = {
-  instagram: 'https://www.instagram.com/truckeesnowbotics/',
-  githubRepo: 'https://github.com/NoisyDream18/FTC-Truckee-Robotics',
-  github: 'https://github.com/NoisyDream18',
-  about: '#about',
-  team: '#team',
-  gallery: '#gallery',
-  sponsors: '#sponsors',
-  contact: '#contact',
-  join: 'https://forms.gle/21LAVqmfFErDXKMv6',
-  sponsorshipForm: '#',
-  formAction: 'https://formspree.io/f/{your-form-id}'
+  // ── Socials ──────────────────────────────────────
+  instagram:      'https://www.instagram.com/truckeesnowbotics/',
+  github:         'https://github.com/NoisyDream18',
+  githubRepo:     'https://github.com/NoisyDream18/FTC-Truckee-Robotics',
+
+  // ── Forms ─────────────────────────────────────────
+  join:           'https://forms.gle/21LAVqmfFErDXKMv6',
+  sponsorshipForm:'/assets/files/sponsorship_packet.pdf',
+  formAction:     'https://formspree.io/f/xaqppzbr',
+  donate:         'https://hcb.hackclub.com/donations/start/truckee-snowbotics',
+
+  // ── Internal pages ────────────────────────────────
+  contact:        '/contact/',
 };
 
 function applyLinkTargets() {
@@ -49,22 +58,42 @@ applyLinkTargets();
   targets.forEach(el => io.observe(el));
 })();
 
-// ── Active nav on scroll ──────────────────────
+// ── Active nav link (page-based) ─────────────
 (function () {
-  const sections = document.querySelectorAll('section[id]');
-  const links    = document.querySelectorAll('.nav a[href^="#"]');
-  if (!sections.length || !links.length) return;
+  const links = document.querySelectorAll('.nav a');
+  if (!links.length) return;
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      links.forEach(l => {
-        l.classList.toggle('active', l.getAttribute('href') === `#${e.target.id}`);
-      });
+  // Normalise pathname to always end with /
+  const currentPath = window.location.pathname.replace(/\/?$/, '/');
+
+  links.forEach(l => {
+    const href = l.getAttribute('href') || '';
+    const linkPath = href.split('#')[0].replace(/\/?$/, '/');
+    l.classList.toggle('active', linkPath === currentPath);
+  });
+})();
+
+// ── Hamburger / mobile nav toggle ────────────
+(function () {
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('mobile-nav');
+  if (!btn || !nav) return;
+
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    nav.setAttribute('aria-hidden', String(!open));
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      nav.setAttribute('aria-hidden', 'true');
     });
-  }, { threshold: 0.45 });
-
-  sections.forEach(s => io.observe(s));
+  });
 })();
 
 // ── External links ────────────────────────────
@@ -87,7 +116,7 @@ function escapeHTML(value) {
   const grid = document.querySelector('.team-grid');
   if (!grid) return;
 
-  fetch('assets/data/team.json')
+  fetch('/assets/data/team.json')
     .then(response => {
       if (!response.ok) throw new Error('Team JSON not found');
       return response.json();
@@ -143,7 +172,7 @@ function escapeHTML(value) {
   const track = document.querySelector('.gallery-track');
   if (!track) return;
 
-  fetch('assets/data/gallery.json')
+  fetch('/assets/data/gallery.json')
     .then(response => {
       if (!response.ok) throw new Error('Gallery JSON not found');
       return response.json();
@@ -222,7 +251,7 @@ function escapeHTML(value) {
   const grid = document.querySelector('.sponsor-grid');
   if (!grid) return;
 
-  fetch('assets/data/sponsors.json')
+  fetch('/assets/data/sponsors.json')
     .then(response => {
       if (!response.ok) throw new Error('Sponsors JSON not found');
       return response.json();
@@ -230,23 +259,14 @@ function escapeHTML(value) {
     .then(items => {
       if (!Array.isArray(items)) throw new Error('Invalid sponsors data');
       const sponsorHtml = items.map(item => {
-        const logo = item.logo ? `<div class="sponsor-item-logo"><img src="${escapeHTML(item.logo)}" alt="${escapeHTML(item.name || 'Sponsor')} logo" /></div>` : '';
-        const copy = `
-          <div class="sponsor-item-copy">
-            <span class="sponsor-name">${escapeHTML(item.name || 'Sponsor')}</span>
-            <span class="sponsor-description">${escapeHTML(item.description || '')}</span>
-          </div>
-        `;
         const hasLink = item.website && item.website.trim();
         const tag = hasLink ? 'a' : 'div';
         const hrefAttr = hasLink ? ` href="${escapeHTML(item.website)}" target="_blank" rel="noopener noreferrer"` : '';
+        const banner = item.banner
+          ? `<img src="${escapeHTML(item.banner)}" alt="${escapeHTML(item.name || 'Sponsor')} banner" />`
+          : '';
 
-        return `
-          <${tag} class="sponsor-item"${hrefAttr}>
-            ${logo}
-            ${copy}
-          </${tag}>
-        `;
+        return `<${tag} class="sponsor-item"${hrefAttr}>${banner}</${tag}>`;
       }).join('');
 
       grid.innerHTML = sponsorHtml;
@@ -255,19 +275,78 @@ function escapeHTML(value) {
       // keep the existing static markup if loading fails
     });
 })();
-// ── Contact form demo error handler ─────────────────
+
+// ── Sponsor bar ───────────────────────────────────────
+(function () {
+  const bar = document.getElementById('sponsor-bar-logos');
+  if (!bar) return;
+
+  fetch('/assets/data/sponsors.json')
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(items => {
+      if (!Array.isArray(items) || !items.length) return;
+      bar.innerHTML = items.map(item => {
+        const hasLink = item.website && item.website.trim();
+        const tag = hasLink ? 'a' : 'div';
+        const attrs = hasLink ? ` href="${escapeHTML(item.website)}" target="_blank" rel="noopener noreferrer"` : '';
+        const banner = item.banner
+          ? `<img src="${escapeHTML(item.banner)}" alt="${escapeHTML(item.name || 'Sponsor')} banner" />`
+          : '';
+        return `<${tag} class="sponsor-bar-logo"${attrs}>${banner}</${tag}>`;
+      }).join('');
+    })
+    .catch(() => {});
+})();
+
+// ── Load links from JSON ──────────────────────────────
+(function () {
+  fetch('/assets/data/links.json')
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(items => {
+      if (!Array.isArray(items) || !items.length) return;
+
+      const grid = document.getElementById('links-grid');
+      if (grid) {
+        grid.innerHTML = items.map(item => {
+          const url = item.url && item.url.trim() ? item.url : '#';
+          return `
+            <a class="link-card" href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">
+              <span class="link-card-label">${escapeHTML(item.label || '')}</span>
+              ${item.category ? `<span class="link-card-category">${escapeHTML(item.category)}</span>` : ''}
+            </a>`;
+        }).join('');
+      }
+
+      const footerLinks = document.getElementById('footer-links-list');
+      if (footerLinks) {
+        footerLinks.innerHTML = items.map(item => {
+          const url = item.url && item.url.trim() ? item.url : '#';
+          return `<a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.label || '')}</a>`;
+        }).join('');
+      }
+
+      const footerNav = document.querySelector('.footer-nav');
+      if (footerNav) {
+        const sep = document.createElement('span');
+        sep.className = 'footer-nav-sep';
+        footerNav.appendChild(sep);
+        items.forEach(item => {
+          const url = item.url && item.url.trim() ? item.url : '#';
+          const a = document.createElement('a');
+          a.href = url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.textContent = item.label || '';
+          footerNav.appendChild(a);
+        });
+      }
+    })
+    .catch(() => {});
+})();
+
+// ── Contact form ─────────────────────────────────────
 (function () {
   const contactForm = document.querySelector('.contact-form');
   if (!contactForm) return;
-
-  const contactFormErrorText = 'Error: No FormSpree endpoint configured.';
-  const errorEl = contactForm.querySelector('.form-error');
-
-  contactForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    if (errorEl) {
-      errorEl.textContent = contactFormErrorText;
-      errorEl.classList.remove('hidden');
-    }
-  });
+  // Form submits natively to Formspree via action attribute set by applyLinkTargets()
 })();
