@@ -318,8 +318,8 @@ ul { list-style: none; }
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
-@media (max-width: 700px) { .gallery-track { gap: .75rem; grid-template-rows: repeat(3, 160px); grid-auto-columns: 220px; } }
-@media (max-width: 440px) { .gallery-track { gap: .5rem; grid-template-rows: repeat(3, 130px); grid-auto-columns: 180px; } }
+@media (max-width: 700px) { .gallery-track { gap: .75rem; grid-template-rows: repeat(3, 200px); grid-auto-columns: 280px; } }
+@media (max-width: 440px) { .gallery-track { gap: .5rem; grid-template-rows: repeat(3, 160px); grid-auto-columns: 220px; } }
 
 .section-header--with-action {
   display: flex;
@@ -335,9 +335,9 @@ ul { list-style: none; }
 }
 .gallery-track {
   display: grid;
-  grid-template-rows: repeat(3, 200px);
+  grid-template-rows: repeat(3, 260px);
   grid-auto-flow: column;
-  grid-auto-columns: 280px;
+  grid-auto-columns: 360px;
   gap: 1rem;
   scroll-behavior: smooth;
 }
@@ -497,8 +497,8 @@ ul { list-style: none; }
 }
 
 .news-card {
-  display: flex; flex-direction: column; gap: .35rem;
-  padding: 1.1rem 0;
+  display: flex; flex-direction: column; gap: .6rem;
+  padding: 1.75rem 0;
   border-bottom: 1px solid var(--border);
 }
 .news-card:first-child { border-top: 1px solid var(--border); }
@@ -506,19 +506,19 @@ ul { list-style: none; }
   display: flex; align-items: center; gap: .65rem;
 }
 .news-card-date {
-  font-size: .75rem; color: var(--text-dim);
+  font-size: .85rem; color: var(--text-dim);
   white-space: nowrap;
 }
 .news-card-tag {
-  font-size: .65rem; font-weight: 600; letter-spacing: .08em;
+  font-size: .75rem; font-weight: 600; letter-spacing: .08em;
   text-transform: uppercase; color: var(--blue-dark);
 }
 .news-card-title {
-  font-size: .95rem; font-weight: 600; color: var(--heading);
+  font-size: 1.15rem; font-weight: 600; color: var(--heading);
   line-height: 1.4; margin: 0;
 }
 .news-card-text {
-  font-size: .85rem; color: var(--text-dim); line-height: 1.6; margin: 0;
+  font-size: 1.05rem; color: var(--text-dim); line-height: 1.6; margin: 0;
 }
 
 .donate-grid {

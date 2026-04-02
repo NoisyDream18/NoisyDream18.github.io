@@ -1,20 +1,20 @@
 [
   {
-    "order": 1,
+    "order": 2,
     "date": "March-June 2026",
     "tag": "Season",
     "title": "Post-Season Begins",
     "text": "The season has ended, but we will continue to meet on Mondays after school for outreach, sponsors, and team building and learning."
   },
   {
-    "order": 3,
+    "order": 1,
     "date": "April 23, 2026",
     "tag": "Lesson",
     "title": "Programming Lesson",
     "text": "We have an intro to robotics and programming lesson for new members and all those interested. No experience needed, personal laptops recommended."
   },
   {
-    "order": 2,
+    "order": 3,
     "date": "Post-Season 2026",
     "tag": "Team",
     "title": "Recruiting New Members for 2026–27",
