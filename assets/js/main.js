@@ -15,7 +15,7 @@ const LINK_TARGETS = {
   githubRepo:     'https://github.com/truckee-snowbotics/truckee-snowbotics',
 
   // ── Forms ─────────────────────────────────────────
-  join:           'https://forms.gle/21LAVqmfFErDXKMv6',
+  join:           'https://forms.gle/wmb4EVvQHGe2SRt96',
   sponsorshipForm:'/assets/files/sponsorship-form.pdf',
   formAction:     'https://formspree.io/f/xkopzlvz',
   donate:         'https://hcb.hackclub.com/donations/start/truckee-snowbotics',

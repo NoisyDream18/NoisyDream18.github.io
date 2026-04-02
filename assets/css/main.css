@@ -562,6 +562,10 @@ a.sponsor-item:hover { border-color: var(--blue-border); box-shadow: 0 4px 16px 
   padding: 2rem;
   margin-top: 1.25rem;
   grid-column: 1 / -1;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 .sponsor-item--cta p {
   font-size: 1rem; font-weight: 600; color: var(--blue-dark);
@@ -687,6 +691,34 @@ a.sponsor-item:hover { border-color: var(--blue-border); box-shadow: 0 4px 16px 
 .contact-actions {
   display: flex; flex-wrap: wrap; justify-content: center;
   gap: .75rem; margin-top: 1.5rem;
+}
+
+/* ── Sponsorship process steps ───────────────── */
+.process-steps {
+  list-style: none; counter-reset: steps;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 0; margin: 1.75rem 0 0;
+}
+.process-steps li {
+  counter-increment: steps;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.25rem 1.25rem 1.25rem 1rem;
+  display: flex; flex-direction: column; gap: .35rem;
+}
+.process-steps li::before {
+  content: "0" counter(steps);
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--blue); opacity: .35;
+  line-height: 1; margin-bottom: .15rem;
+}
+.process-steps li strong { font-size: .9rem; font-weight: 600; }
+.process-steps li span { font-size: .82rem; color: var(--text-mid); line-height: 1.55; }
+@media (max-width: 600px) {
+  .process-steps { grid-template-columns: 1fr; }
 }
 
 /* ── Sponsor bar ─────────────────────────────── */

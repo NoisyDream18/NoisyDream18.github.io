@@ -2,8 +2,8 @@
   {
     "id": "join-form",
     "label": "Join the Team",
-    "url": "https://forms.gle/21LAVqmfFErDXKMv6",
-    "category": "Join"
+    "url": "https://forms.gle/wmb4EVvQHGe2SRt96",
+    "category": "Forms"
   },
   {
     "id": "ftc-manual",
@@ -19,7 +19,7 @@
   },
   {
     "id": "sponsorship-form",
-    "label": "Sponsorship Form and Details",
+    "label": "Sponsorship Form",
     "url": "/assets/files/sponsorship-form.pdf",
     "category": "Sponsors"
   },
@@ -28,5 +28,11 @@
     "label": "2026 Contract",
     "url": "/assets/files/2026_contract.pdf",
     "category": "Resources"
+  },
+  {
+    "id": "photos-videos",
+    "label": "Photos and Videos",
+    "url": "https://drive.google.com/drive/folders/15UNByytemD-JQa40h9zER6xoQA7nv9dA?usp=sharing",
+    "category": "Media"
   }
 ]
