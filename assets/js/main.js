@@ -344,6 +344,31 @@ function escapeHTML(value) {
     .catch(() => {});
 })();
 
+// ── News feed ────────────────────────────────────────
+(function () {
+  const grid = document.getElementById('news-grid');
+  if (!grid) return;
+  fetch('/assets/data/news.json')
+    .then(r => r.json())
+    .then(items => {
+      // Sort by order ascending; items with same order are left in random relative positions
+      items.sort((a, b) => {
+        if (a.order !== b.order) return a.order - b.order;
+        return Math.random() - 0.5;
+      });
+      grid.innerHTML = items.map(item => `
+        <div class="news-card">
+          <div class="news-card-meta">
+            <span class="news-card-date">${escapeHTML(item.date || '')}</span>
+            <span class="news-card-tag">${escapeHTML(item.tag || '')}</span>
+          </div>
+          <h3 class="news-card-title">${escapeHTML(item.title || '')}</h3>
+          <p class="news-card-text">${escapeHTML(item.text || '')}</p>
+        </div>`).join('');
+    })
+    .catch(() => {});
+})();
+
 // ── Contact form ─────────────────────────────────────
 (function () {
   const contactForm = document.querySelector('.contact-form');

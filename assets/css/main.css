@@ -486,47 +486,39 @@ ul { list-style: none; }
 /* ── Donate ──────────────────────────────────── */
 /* ── News ────────────────────────────────────── */
 .section--dark {
-  background: var(--blue-dark);
+  background: linear-gradient(135deg, #1d6fa8 0%, #1d8fd1 60%, #3aa8e8 100%);
   border-color: transparent;
 }
 .section--dark .section-header h2 { color: #fff; }
 .section--dark .section-header p { color: rgba(255,255,255,.65); }
 
 .news-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  display: flex; flex-direction: column;
 }
-@media (max-width: 760px) { .news-grid { grid-template-columns: 1fr; } }
 
 .news-card {
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-  gap: 1.1rem; padding: 2.25rem 1.75rem;
-  border-radius: 14px;
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.1);
-  border-top: 3px solid var(--blue);
-  transition: transform .2s var(--ease), background .2s;
+  display: flex; flex-direction: column; gap: .35rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
 }
-.news-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.12); }
-.news-card-icon {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: rgba(29,143,209,.25); color: #7dd3fc;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+.news-card:first-child { border-top: 1px solid var(--border); }
+.news-card-meta {
+  display: flex; align-items: center; gap: .65rem;
 }
-.news-card-body { display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+.news-card-date {
+  font-size: .75rem; color: var(--text-dim);
+  white-space: nowrap;
+}
 .news-card-tag {
-  font-size: .65rem; font-weight: 600; letter-spacing: .1em;
-  text-transform: uppercase; color: #7dd3fc;
-  background: rgba(29,143,209,.25);
-  padding: .22rem .75rem; border-radius: 999px;
+  font-size: .65rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--blue-dark);
 }
 .news-card-title {
-  font-size: 1rem; font-weight: 700; color: #fff;
+  font-size: .95rem; font-weight: 600; color: var(--heading);
   line-height: 1.4; margin: 0;
 }
 .news-card-text {
-  font-size: .875rem; color: rgba(255,255,255,.62); line-height: 1.65; margin: 0;
+  font-size: .85rem; color: var(--text-dim); line-height: 1.6; margin: 0;
 }
 
 .donate-grid {
@@ -702,45 +694,45 @@ a.sponsor-item:hover { border-color: var(--blue-border); box-shadow: 0 4px 16px 
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: var(--bg-alt);
-  padding: 1rem 2rem;
+  padding: 3rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 .sponsor-bar-label {
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .07em;
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--text-dim);
   white-space: nowrap;
-  flex-shrink: 0;
 }
 .sponsor-bar-logos {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  flex: 1;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
 }
 .sponsor-bar-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
-  opacity: .8;
-  transition: opacity .15s;
+  transition: filter .15s;
   flex-shrink: 0;
 }
-.sponsor-bar-logo:hover { opacity: 1; }
+.sponsor-bar-logo:hover { filter: grayscale(1) opacity(.5); }
 .sponsor-bar-logo img {
-  height: 100px;
+  height: 280px;
   width: auto;
   display: block;
   object-fit: contain;
 }
 .sponsor-bar-link {
-  font-size: .8rem;
+  font-size: .9rem;
   font-weight: 600;
   color: var(--blue);
   white-space: nowrap;
@@ -751,7 +743,7 @@ a.sponsor-item:hover { border-color: var(--blue-border); box-shadow: 0 4px 16px 
 
 /* ── Footer ──────────────────────────────────── */
 .site-footer {
-  background: var(--text); color: rgba(255,255,255,.6);
+  background: var(--blue-dark); color: rgba(255,255,255,.6);
 }
 .footer-inner {
   max-width: var(--max); margin: 0 auto;
