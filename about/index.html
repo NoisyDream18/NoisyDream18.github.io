@@ -27,6 +27,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#0a0a0a" />
   <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" /></noscript>
   <link rel="stylesheet" href="../assets/css/main.css" />
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -39,6 +43,9 @@
     ]
   }
   </script>
+  <!-- Preload page data -->
+  <link rel="preload" href="/assets/data/team.json" as="fetch" crossorigin />
+  <link rel="preload" href="/assets/data/links.json" as="fetch" crossorigin />
 </head>
 <body>
 
@@ -288,6 +295,6 @@
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.js" defer></script>
 </body>
 </html>

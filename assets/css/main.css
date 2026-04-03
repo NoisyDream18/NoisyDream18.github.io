@@ -1,7 +1,5 @@
 /* main.css — Truckee Snowbotics */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 /* ── Tokens ─────────────────────────────────── */
 :root {
   --bg:          #ffffff;
@@ -75,7 +73,7 @@ ul { list-style: none; }
 .site-header {
   position: sticky; top: 0; z-index: 200;
   background: rgba(255,255,255,.95);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(4px);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 8px rgba(0,0,0,.06);
 }

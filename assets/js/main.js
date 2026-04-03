@@ -133,7 +133,7 @@ function escapeHTML(value) {
         return `
           <div class="member-card${empty}">
             <div class="${avatarClass}">
-              ${hasPhoto ? `<img src="${escapeHTML(member.photo)}" alt="${escapeHTML(member.name || 'Team member')}" />` : escapeHTML(initials)}
+              ${hasPhoto ? `<img src="${escapeHTML(member.photo)}" alt="${escapeHTML(member.name || 'Team member')}" loading="lazy" decoding="async" />` : escapeHTML(initials)}
             </div>
             <div class="member-info">
               <span class="member-name">${escapeHTML(member.name || 'Unnamed')}</span>
@@ -190,7 +190,7 @@ function escapeHTML(value) {
         return `
           <div class="gallery-item" data-src="${escapeHTML(src)}" data-alt="${escapeHTML(alt)}" data-caption="${escapeHTML(caption)}">
             <div class="gallery-image">
-              ${image ? `<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" />` : `<span>${escapeHTML(caption)}</span>`}
+              ${image ? `<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" loading="lazy" decoding="async" />` : `<span>${escapeHTML(caption)}</span>`}
             </div>
           </div>
         `;
@@ -264,7 +264,7 @@ function escapeHTML(value) {
         const tag = hasLink ? 'a' : 'div';
         const hrefAttr = hasLink ? ` href="${escapeHTML(item.website)}" target="_blank" rel="noopener noreferrer"` : '';
         const banner = item.banner
-          ? `<img src="${escapeHTML(item.banner)}" alt="${escapeHTML(item.name || 'Sponsor')} banner" />`
+          ? `<img src="${escapeHTML(item.banner)}" alt="${escapeHTML(item.name || 'Sponsor')} banner" loading="lazy" decoding="async" />`
           : '';
 
         return `<${tag} class="sponsor-item"${hrefAttr}>${banner}</${tag}>`;
@@ -291,7 +291,7 @@ function escapeHTML(value) {
         const tag = hasLink ? 'a' : 'div';
         const attrs = hasLink ? ` href="${escapeHTML(item.website)}" target="_blank" rel="noopener noreferrer"` : '';
         const banner = item.banner
-          ? `<img src="${escapeHTML(item.banner)}" alt="${escapeHTML(item.name || 'Sponsor')} banner" />`
+          ? `<img src="${escapeHTML(item.banner)}" alt="${escapeHTML(item.name || 'Sponsor')} banner" loading="lazy" decoding="async" />`
           : '';
         return `<${tag} class="sponsor-bar-logo"${attrs}>${banner}</${tag}>`;
       }).join('');
