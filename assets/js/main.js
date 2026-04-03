@@ -11,6 +11,7 @@
 const LINK_TARGETS = {
   // ── Socials ──────────────────────────────────────
   instagram:      'https://www.instagram.com/truckeesnowbotics/',
+  youtube:        'https://www.youtube.com/@TruckeeSnowbotics',
   github:         'https://github.com/truckee-snowbotics',
   githubRepo:     'https://github.com/truckee-snowbotics/truckee-snowbotics',
 

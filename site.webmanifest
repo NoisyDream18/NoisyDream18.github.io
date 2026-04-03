@@ -1,0 +1,17 @@
+{
+  "name": "Truckee Snowbotics",
+  "short_name": "Snowbotics",
+  "description": "FTC Team #32587 — Tahoe-Truckee High School, Truckee, CA",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
