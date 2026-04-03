@@ -20,13 +20,13 @@
   {
     "id": "sponsorship-form",
     "label": "Sponsorship Form",
-    "url": "/assets/files/sponsorship-form.pdf",
+    "url": "/assets/files/2026-sponsorship-form.pdf",
     "category": "Sponsors"
   },
   {
     "id": "2026_contract",
     "label": "2026 Contract",
-    "url": "/assets/files/2026_contract.pdf",
+    "url": "/assets/files/2026-contract.pdf",
     "category": "Resources"
   },
   {
@@ -34,5 +34,11 @@
     "label": "Photos and Videos",
     "url": "https://drive.google.com/drive/folders/15UNByytemD-JQa40h9zER6xoQA7nv9dA?usp=sharing",
     "category": "Media"
+  },
+  {
+    "id": "donate",
+    "label": "Donate",
+    "url": "https://hcb.hackclub.com/donations/start/truckee-snowbotics",
+    "category": "Support"
   }
 ]

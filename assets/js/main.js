@@ -17,7 +17,7 @@ const LINK_TARGETS = {
 
   // ── Forms ─────────────────────────────────────────
   join:           'https://forms.gle/wmb4EVvQHGe2SRt96',
-  sponsorshipForm:'/assets/files/sponsorship-form.pdf',
+  sponsorshipForm:'/assets/files/2026-sponsorship-form.pdf',
   formAction:     'https://formspree.io/f/xkopzlvz',
   donate:         'https://hcb.hackclub.com/donations/start/truckee-snowbotics',
 
@@ -375,4 +375,96 @@ function escapeHTML(value) {
   const contactForm = document.querySelector('.contact-form');
   if (!contactForm) return;
   // Form submits natively to Formspree via action attribute set by applyLinkTargets()
+})();
+
+// ── Season page ───────────────────────────────────────
+(function () {
+  // Only run on the season page
+  if (!document.getElementById('results-table-body')) return;
+
+  fetch('/assets/data/seasons.json')
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(seasons => {
+      if (!Array.isArray(seasons) || !seasons.length) return;
+
+      const current = seasons.find(s => s.current) || seasons[0];
+
+      // Hero
+      const badge = document.getElementById('season-badge');
+      const gameName = document.getElementById('season-game-name');
+      const robotNameLabel = document.getElementById('season-robot-name-label');
+      if (badge) badge.textContent = current.year + ' Season';
+      if (gameName) gameName.textContent = current.game || current.year + ' Season';
+      if (robotNameLabel && current.robot) robotNameLabel.textContent = current.robot.name || '';
+
+      // Robot section
+      const robotHeading = document.getElementById('robot-name-heading');
+      const robotDesc = document.getElementById('robot-description');
+      const robotSpecs = document.getElementById('robot-specs-grid');
+      if (current.robot) {
+        if (robotHeading) robotHeading.textContent = current.robot.name || 'Robot';
+        if (robotDesc) robotDesc.textContent = current.robot.description || '';
+        if (robotSpecs && Array.isArray(current.robot.specs)) {
+          robotSpecs.innerHTML = current.robot.specs.map(spec => `
+            <div class="info-card">
+              <span class="info-card-title">${escapeHTML(spec.label)}</span>
+              <p class="info-card-body">${escapeHTML(spec.value)}</p>
+            </div>`).join('');
+        }
+      }
+
+      // Results table
+      const resultsLabel = document.getElementById('results-season-label');
+      const tbody = document.getElementById('results-table-body');
+      if (resultsLabel) resultsLabel.textContent = current.year + ' Season';
+      if (tbody && Array.isArray(current.tournaments) && current.tournaments.length) {
+        tbody.innerHTML = current.tournaments.map(t => `
+          <tr>
+            <td>${escapeHTML(t.name || '—')}</td>
+            <td>${escapeHTML(t.date || '—')}</td>
+            <td>${escapeHTML(t.location || '—')}</td>
+            <td>${escapeHTML(t.ranking || '—')}</td>
+            <td>${escapeHTML(t.record || '—')}</td>
+            <td>${escapeHTML(t.awards || '—')}</td>
+          </tr>`).join('');
+      } else if (tbody) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:2rem;">No results available yet.</td></tr>';
+      }
+
+      // Archive (all non-current seasons)
+      const archiveList = document.getElementById('season-archive-list');
+      const past = seasons.filter(s => !s.current);
+      if (archiveList && past.length) {
+        archiveList.innerHTML = past.map(s => `
+          <div class="season-archive-item">
+            <div class="season-archive-header">
+              <span class="season-badge">${escapeHTML(s.year)} Season</span>
+              <span class="season-archive-game">${escapeHTML(s.game || '')}</span>
+            </div>
+            ${s.robot ? `<p class="season-archive-robot"><strong>Robot:</strong> ${escapeHTML(s.robot.name || '—')}</p>` : ''}
+            ${Array.isArray(s.tournaments) && s.tournaments.length ? `
+            <div class="results-table-wrapper">
+              <table class="results-table">
+                <thead><tr><th>Event</th><th>Date</th><th>Location</th><th>Ranking</th><th>Record</th><th>Awards</th></tr></thead>
+                <tbody>${s.tournaments.map(t => `
+                  <tr>
+                    <td>${escapeHTML(t.name || '—')}</td>
+                    <td>${escapeHTML(t.date || '—')}</td>
+                    <td>${escapeHTML(t.location || '—')}</td>
+                    <td>${escapeHTML(t.ranking || '—')}</td>
+                    <td>${escapeHTML(t.record || '—')}</td>
+                    <td>${escapeHTML(t.awards || '—')}</td>
+                  </tr>`).join('')}
+                </tbody>
+              </table>
+            </div>` : ''}
+          </div>`).join('');
+      } else if (archiveList) {
+        archiveList.innerHTML = '<p style="color:var(--text-dim);font-size:.9rem;">Past seasons will appear here as they are added to seasons.json.</p>';
+      }
+    })
+    .catch(() => {
+      const tbody = document.getElementById('results-table-body');
+      if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:2rem;">Could not load season data.</td></tr>';
+    });
 })();
