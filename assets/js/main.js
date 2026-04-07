@@ -389,6 +389,10 @@ function escapeHTML(value) {
 
       const current = seasons.find(s => s.current) || seasons[0];
 
+      // Hide static SEO anchor now that real content is loading
+      const seoAnchor = document.getElementById('season-intro-seo');
+      if (seoAnchor) seoAnchor.style.display = 'none';
+
       // Hero
       const badge = document.getElementById('season-badge');
       const gameName = document.getElementById('season-game-name');

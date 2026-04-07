@@ -841,6 +841,17 @@ a.sponsor-item:hover { border-color: var(--blue-border); box-shadow: 0 4px 16px 
 .footer-bottom a:hover { color: rgba(255,255,255,.7); }
 
 /* ── Season page ─────────────────────────────────────── */
+#season-intro-seo h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -.025em;
+}
+#season-intro-seo p {
+  font-size: .95rem;
+  color: var(--text-dim);
+  margin-top: .4rem;
+}
+
 .season-intro {
   display: flex;
   align-items: center;
