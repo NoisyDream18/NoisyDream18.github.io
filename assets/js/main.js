@@ -70,6 +70,25 @@ applyLinkTargets();
 
   // Show only after setup is complete — prevents flash
   banner.style.display = 'block';
+
+  // Disable contact form send button when notice is active
+  const sendBtn = document.querySelector('.contact-send-btn');
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.style.opacity = '0.45';
+    sendBtn.style.cursor = 'not-allowed';
+
+    // Insert explanation below the button
+    const notice = document.createElement('p');
+    notice.style.cssText = 'margin-top:.75rem;font-size:.875rem;background:#3b1010;color:#fca5a5;border:1px solid #7f1d1d;border-radius:0;padding:.6rem .85rem;line-height:1.5;';
+    notice.innerHTML = '&#9888; Contact form submissions are currently unavailable. Please reach us directly at <a href="mailto:' + CONTACT_NOTICE.email + '" style="color:#fde68a;text-decoration:underline;font-weight:600;">' + CONTACT_NOTICE.email + '</a>.';
+    sendBtn.insertAdjacentElement('afterend', notice);
+
+    const form = sendBtn.closest('form');
+    if (form) {
+      form.addEventListener('submit', (e) => { e.preventDefault(); });
+    }
+  }
 })();
 
 // ── Scroll reveal ─────────────────────────────
