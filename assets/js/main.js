@@ -2,6 +2,17 @@
 'use strict';
 
 // ╔══════════════════════════════════════════════════╗
+// ║  CONTACT NOTICE BANNER                           ║
+// ╠══════════════════════════════════════════════════╣
+// ║  Set enabled: true to show the banner,           ║
+// ║  false to hide it site-wide instantly.           ║
+// ╚══════════════════════════════════════════════════╝
+const CONTACT_NOTICE = {
+  enabled: true,
+  email:   'jwest0105@outlook.com',
+};
+
+// ╔══════════════════════════════════════════════════╗
 // ║  LINKS — edit these when URLs change             ║
 // ╠══════════════════════════════════════════════════╣
 // ║  Any element with data-link-key="keyName" will   ║
@@ -40,6 +51,26 @@ function applyLinkTargets() {
 }
 
 applyLinkTargets();
+
+// ── Contact notice banner ─────────────────────────
+(function () {
+  const banner = document.getElementById('notice-banner');
+  if (!banner || !CONTACT_NOTICE.enabled) return;
+
+  // Populate email link from config
+  const link = banner.querySelector('a[data-notice-email]');
+  if (link) {
+    link.href = 'mailto:' + CONTACT_NOTICE.email;
+    link.textContent = CONTACT_NOTICE.email;
+  }
+
+  // Wire up close button
+  const btn = banner.querySelector('[data-notice-close]');
+  if (btn) btn.addEventListener('click', () => { banner.style.display = 'none'; });
+
+  // Show only after setup is complete — prevents flash
+  banner.style.display = 'block';
+})();
 
 // ── Scroll reveal ─────────────────────────────
 (function () {
