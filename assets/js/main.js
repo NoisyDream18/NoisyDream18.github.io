@@ -2,14 +2,20 @@
 'use strict';
 
 // ╔══════════════════════════════════════════════════╗
+// ║  CONTACT EMAIL — change this one value to update ║
+// ║  the email address everywhere on the site.       ║
+// ╚══════════════════════════════════════════════════╝
+const CONTACT_EMAIL = 'contact@snowbotics.org';
+
+// ╔══════════════════════════════════════════════════╗
 // ║  CONTACT NOTICE BANNER                           ║
 // ╠══════════════════════════════════════════════════╣
 // ║  Set enabled: true to show the banner,           ║
 // ║  false to hide it site-wide instantly.           ║
 // ╚══════════════════════════════════════════════════╝
 const CONTACT_NOTICE = {
-  enabled: true,
-  email:   'jwest0105@outlook.com',
+  enabled: false,
+  email:   'truckeesnowbotics@gmail.com',
 };
 
 // ╔══════════════════════════════════════════════════╗
@@ -29,7 +35,7 @@ const LINK_TARGETS = {
   // ── Forms ─────────────────────────────────────────
   join:           'https://forms.gle/wmb4EVvQHGe2SRt96',
   sponsorshipForm:'/assets/files/sponsorship-form-2026.pdf',
-  formAction:     'https://formspree.io/f/xkopzlvz',
+  formAction:     'https://formspree.io/f/mqewdqbb',
   donate:         'https://hcb.hackclub.com/donations/start/truckee-snowbotics',
 
   // ── Internal pages ────────────────────────────────
@@ -51,6 +57,26 @@ function applyLinkTargets() {
 }
 
 applyLinkTargets();
+
+// ── Apply CONTACT_EMAIL to all mailto links ───────
+(function applyContactEmail() {
+  // Update all mailto anchor href and visible email text
+  document.querySelectorAll('a[href^="mailto:"]').forEach(el => {
+    el.href = 'mailto:' + CONTACT_EMAIL;
+    if (el.textContent.includes('@')) el.textContent = CONTACT_EMAIL;
+  });
+
+  // Update JSON-LD structured data email field if present
+  document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+    try {
+      const data = JSON.parse(script.textContent);
+      if (data.email !== undefined) {
+        data.email = CONTACT_EMAIL;
+        script.textContent = JSON.stringify(data, null, 2);
+      }
+    } catch (e) { /* malformed JSON-LD — skip */ }
+  });
+})();
 
 // ── Contact notice banner ─────────────────────────
 (function () {
