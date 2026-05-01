@@ -1,4 +1,4 @@
-Contact: mailto:ths@snowbotics.org
+Contact: mailto:contact@snowbotics.org
 Expires: 2027-04-03T00:00:00.000Z
 Preferred-Languages: en
 Canonical: https://snowbotics.org/.well-known/security.txt
